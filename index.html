@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>R6 팀 점수 계산기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎯 레인보우 식스 시즈 팀 점수 계산기</h1>
+    <p>경기 전적을 입력하면 설정한 점수표대로 팀원별 점수를 계산해 순위를 보여줍니다.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. 점수표</h2>
+      <p class="hint">항목당 점수를 바꾸면 순위가 바로 다시 계산됩니다. 데스를 감점하려면 음수(예: -1)를 넣으세요.</p>
+      <div id="rules" class="rules"></div>
+      <button id="resetRules" class="ghost">기본값으로</button>
+    </section>
+
+    <section class="card">
+      <h2>2. 경기 추가</h2>
+      <label class="row">경기 이름
+        <input id="matchName" type="text" placeholder="예: 10/2 랭크 1경기">
+      </label>
+      <div class="table-wrap">
+        <table id="entry">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="actions">
+        <button id="addRow" class="ghost">+ 선수 추가</button>
+        <button id="saveMatch" class="primary">경기 저장</button>
+      </div>
+
+      <details>
+        <summary>CSV / 표 붙여넣기로 한 번에 입력</summary>
+        <p class="hint">엑셀·구글시트에서 복사하거나 CSV로 붙여넣으세요. 첫 줄에 <code>이름,킬,데스,어시스트,설치,해제,헤드샷,승리</code> 같은 헤더가 있으면 순서가 달라도 됩니다. 헤더가 없으면 이 순서로 해석합니다.</p>
+        <textarea id="csv" rows="5" placeholder="이름,킬,데스,어시스트,설치,해제,헤드샷,승리&#10;철수,12,8,3,1,0,4,1&#10;영희,9,10,5,0,2,2,1"></textarea>
+        <button id="loadCsv" class="ghost">표에 불러오기</button>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>3. 순위</h2>
+      <div class="table-wrap"><table id="board"></table></div>
+      <p id="boardEmpty" class="hint">저장된 경기가 없습니다.</p>
+    </section>
+
+    <section class="card">
+      <h2>4. 저장된 경기</h2>
+      <ul id="matches" class="matches"></ul>
+      <div class="actions">
+        <button id="exportJson" class="ghost">JSON 내보내기</button>
+        <label class="ghost file">JSON 불러오기<input id="importJson" type="file" accept="application/json" hidden></label>
+        <button id="clearAll" class="danger">전체 삭제</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="score.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
