@@ -25,6 +25,13 @@
 R6 Siege는 공식 공개 전적 API가 없어서(Ubisoft 비공식 API 또는 tracker.gg 등 제3자 API는 키·약관 이슈가 있음) 현재는 직접 입력/CSV 붙여넣기 방식입니다.
 외부 API 연동을 붙이려면 응답을 `parseStats`와 같은 형태(`{name, kills, deaths, assists, plants, defuses, headshots, wins}`)로 변환해 `state.matches`에 넣으면 됩니다.
 
+## 배포 (GitHub Pages)
+
+`main`에 푸시하면 `.github/workflows/pages.yml`이 테스트 후 자동 배포합니다.
+최초 1회 저장소 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 설정해야 합니다.
+
+배포 주소: https://qorgh529.github.io/r6_count_program/
+
 ## 구조
 
 - `score.js` — 점수 계산·집계·CSV 파싱 (브라우저/Node 공용)
